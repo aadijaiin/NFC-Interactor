@@ -36,7 +36,7 @@ if (!('NDEFReader' in window)) {
     }
   });
   
-  // NFC Write Functionality
+  // NFC Write Functionality - Text
   document.getElementById("writeNfc").addEventListener("click", async () => {
     const data = document.getElementById("writeData").value;
     if (!data) {
@@ -47,9 +47,30 @@ if (!('NDEFReader' in window)) {
     try {
       const nfcWriter = new NDEFReader();
       await nfcWriter.write(data);
-      log(`Data written to NFC tag: "${data}"`);
+      log(`Text data written to NFC tag: "${data}"`);
     } catch (error) {
       log(`Error writing to NFC tag: ${error.message}`);
+    }
+  });
+  
+  // NFC Write Functionality - Links
+  document.getElementById("writeLinkNfc").addEventListener("click", async () => {
+    const link = document.getElementById("writeLink").value;
+    if (!link || !link.startsWith("http")) {
+      log("Please enter a valid URL (must start with http or https).");
+      return;
+    }
+  
+    try {
+      const nfcWriter = new NDEFReader();
+      const record = {
+        recordType: "url",
+        data: link,
+      };
+      await nfcWriter.write({ records: [record] });
+      log(`Link written to NFC tag: "${link}"`);
+    } catch (error) {
+      log(`Error writing link to NFC tag: ${error.message}`);
     }
   });
   

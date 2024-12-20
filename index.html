@@ -38,7 +38,7 @@
     button:hover {
       background: #0056b3;
     }
-    textarea {
+    textarea, input {
       width: 100%;
       padding: 10px;
       margin-top: 10px;
@@ -66,7 +66,9 @@
     <h1>Web NFC Tool</h1>
     <button id="readNfc">Read NFC Tag</button>
     <textarea id="writeData" placeholder="Enter text to write to NFC"></textarea>
-    <button id="writeNfc">Write to NFC Tag</button>
+    <button id="writeNfc">Write Text to NFC Tag</button>
+    <input type="url" id="writeLink" placeholder="Enter a URL (e.g., https://example.com)" />
+    <button id="writeLinkNfc">Write Link to NFC Tag</button>
     <div class="log" id="log">
       <h3>Logs:</h3>
     </div>
